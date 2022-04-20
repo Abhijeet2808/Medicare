@@ -8,78 +8,76 @@
       <img src="assets/buk.png" alt="" />
     </div>
 
-    <form [formGroup]="checkoutForm" >
+    <form [formGroup]="checkoutForm" (ngSubmit)=" saveChanges()">
       <h3>book appointment</h3>
-      <input
-        type="text"
-        placeholder="your name"
-        class="box"
-        formControlName="name"
-      />
-      <input
-        type="number"
-        placeholder="your mobile number"
-        formControlName="number"
-        class="box"
-      />
-      <input
-        type="email"
-        placeholder="your email"
-        formControlName="email"
-        class="box"
-      />
-      <input
-        type="text"
-        placeholder="Prefered doctor"
-        class="box"
-        formControlName="doctorname"
-      />
-      <input
-        type="date"
-        placeholder="Appointement date"
-        formControlName="date"
-        class="box"
-      />
+      <input type="text" placeholder="your name" class="box" formControlName="name" />
+      <div class="form-text text-danger" *ngIf="(name.errors?.['required'] && (name.touched || name.dirty))">
+        please fill name
+      </div>
+      <div class="form-text text-danger" *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)">
+        please fill proper name
+      </div>
+      <input type="number" placeholder="your mobile number" formControlName="number" class="box" />
+      
+      <div class="form-text text-danger" *ngIf="(number.errors?.['required'] && (number.touched || number.dirty))">
+        please fill number
+      </div>
+      <div class="form-text text-danger" *ngIf="number.errors?.['minlength'] && (number.touched || number.dirty)">
+        please fill proper number
+      </div>
+
+      <input type="email" placeholder="your email" formControlName="email" class="box" />
+
+      <div class="form-text text-danger" *ngIf="(email.errors?.['required'] && (email.touched || email.dirty))">
+        please fill email
+      </div>
+      <div class="form-text text-danger" *ngIf="email.errors?.['minlength'] && (email.touched || email.dirty)">
+        please fill proper email
+      </div>
+
+      <input type="text" placeholder="Prefered doctor" class="box" formControlName="doctorname" />
+
+      <div class="form-text text-danger" *ngIf="(doctorname.errors?.['required'] && (doctorname.touched || doctorname.dirty))">
+        please fill doctorname
+      </div>
+      <div class="form-text text-danger" *ngIf="doctorname.errors?.['minlength'] && (doctorname.touched || doctorname.dirty)">
+        please fill proper doctorname
+      </div>
+      
+      <input type="date" placeholder="Appointement date" formControlName="date" class="box" />
+      
+      <div class="form-text text-danger" *ngIf="(date.errors?.['required'] && (date.touched || date.dirty))">
+        please fill date
+      </div>
+
       <input type="time" formControlName="time" class="box" />
-      <input
-        type="submit"
-        value="book now" 
-        class="btn"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"(click)="saveChanges()"
-      />
+      <div class="form-text text-danger" *ngIf="(time.errors?.['required'] && (time.touched || time.dirty))">
+        please fill time
+      </div>
+    
+      <input type="submit" value="book now" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        [disabled]="checkoutForm.invalid" />
     </form>
   </div>
   <!-- pop up message -->
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel"></h5>
 
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
           <h3 style="text-align: center">Appointment booked succesfully!</h3>
         </div>
         <div style="width: 100; margin-left: 170px">
-          <a routerLink="/appointment"><button class="btn btn-primary" type="submit" >
-            View Details
-          </button></a>
+          <a routerLink="/appointment"><button data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary"
+              type="submit">
+              View Details
+            </button></a>
         </div>
         <br />
       </div>

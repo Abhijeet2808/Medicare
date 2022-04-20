@@ -16,14 +16,15 @@
     <tbody>
       <tr *ngFor="let appointment of appointement">
         <th scope="row" ></th>
-        <td>{{appointment.Name}}</td>
-        <td>{{appointment.Number}}</td>
-        <td>{{appointment.Email}}</td>
-        <td>{{appointment.Doctorname}}</td>
-        <td>{{appointment.Date}}</td>
-        <td>{{appointment.Time}}</td>
+        <td>{{appointment.name}}</td>
+        <td>{{appointment.number}}</td>
+        <td>{{appointment.email}}</td>
+        <td>{{appointment.doctorname}}</td>
+        <td>{{appointment.date}}</td>
+        <td>{{appointment.time}}</td>
         <td><i class="bi bi-pencil-fill"></i>&nbsp;
-            <i class="bi bi-trash-fill"></i></td>
+            <i class="bi bi-trash-fill" (click)="deleteAppointment(appointment.id)">
+          </i></td>
 
       </tr>
       

@@ -26,7 +26,13 @@ export class ViewAppointmentsService {
         console.log(<Iappointment>appointment);
       });
   }
-
+  removeCartItem(id:number){debugger;
+    this.httpClient.delete("https://localhost:44305/api/Bookappointments/" + id,{
+      headers:{"Access_Control-Allow-Origin":"*"}
+    }).subscribe((appointment) => {
+        console.log(<Iappointment>appointment);
+      });
+  }
  
   
 }
